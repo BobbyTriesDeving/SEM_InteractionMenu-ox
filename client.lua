@@ -693,27 +693,31 @@ end)
 
 
 --Emote
+local notified = false
+
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(1)
 
         if EmotePlaying then
-            if Config.EmoteHelp then
+            if Config.EmoteHelp and not notified then
                 lib.notify({
                     title = 'Info',
-                    description = 'You are playing an emote move to cancel',
+                    description = 'You are playing an emote, move to cancel',
                     type = 'info',
                 })
+                notified = true
             end
 
-            --  Spacebar                   W                          S                          A                          D
-            if (IsControlPressed(0, 22) or IsControlPressed(0, 32) or IsControlPressed(0, 33) or IsControlPressed(0, 34) or IsControlPressed(0, 35)) then
+            if IsControlPressed(0, 22) or IsControlPressed(0, 32) or IsControlPressed(0, 33) or IsControlPressed(0, 34) or IsControlPressed(0, 35) then
                 CancelEmote()
+                notified = false 
             end
+        else
+            notified = false 
         end
     end
 end)
-
 
 
 --Commands

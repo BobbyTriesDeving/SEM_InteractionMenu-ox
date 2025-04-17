@@ -787,7 +787,7 @@ function Menu()
                                     LoadPed(Uniform.spawncode)
                                     lib.notify({
                                         title = 'Info',
-                                        description = 'Uniform Spawned: ' .. Uniform.Name,
+                                        description = 'Uniform Spawned: ' .. Uniform.name,
                                         type = 'info',
                                     })
                                 end
